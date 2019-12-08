@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 /*Complete the steps in the CrazyDigitalPainting class*/
 
 public class ColorArrayDisplayer {
