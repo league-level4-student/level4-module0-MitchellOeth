@@ -35,13 +35,24 @@ Cell [][] cells;
 		//3. Iterate through the array and initialize each cell.
 		//   Don't forget to consider the cell's dimensions when 
 		//   passing in the location.
-		
+		for (int i = 0; i < w; i++) {
+			for (int j = 0; j < h; j++) {
+				cells[i][j] = new Cell (i, j, cellSize);
+			}
+		}
 	}
 	
 	public void randomizeCells() {
 		//4. Iterate through each cell and randomly set each
 		//   cell's isAlive memeber to true of false
-		
+		Random randy = new Random(2);
+		for (int i = 0; i < cells.length; i++) {
+			if(randy.nextInt()%2 == 0) {
+				//cells[i].isAlive() = true;
+			} else {
+				//cell.isAlive() = false;
+			}
+		}
 		repaint();
 	}
 	
