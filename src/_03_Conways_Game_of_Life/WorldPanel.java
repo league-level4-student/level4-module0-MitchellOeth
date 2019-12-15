@@ -45,12 +45,15 @@ Cell [][] cells;
 	public void randomizeCells() {
 		//4. Iterate through each cell and randomly set each
 		//   cell's isAlive memeber to true of false
+		
 		Random randy = new Random(2);
 		for (int i = 0; i < cells.length; i++) {
-			if(randy.nextInt()%2 == 0) {
-				//cells[i].isAlive() = true;
-			} else {
-				//cell.isAlive() = false;
+			for (int j = 0; j < cells.length; j++) {
+				if(randy.nextInt()%2 == 0) {
+					cells[i][j].isAlive = true;
+				} else {
+					cells[i][j].isAlive = false;
+				}
 			}
 		}
 		repaint();
