@@ -19,10 +19,8 @@ public class WorldPanel extends JPanel implements MouseListener, ActionListener 
 	private Timer timer;
 	
 	//1. Create a 2D array of Cells. Do not initialize it.
-Cell [][] cells;
-	
-	
-	public WorldPanel(int w, int h, int cpr) {
+Cell [][] cells;	
+	 WorldPanel(int w, int h, int cpr) {
 		setPreferredSize(new Dimension(w, h));
 		addMouseListener(this);
 		timer = new Timer(500, this);
@@ -61,7 +59,11 @@ Cell [][] cells;
 	
 	public void clearCells() {
 		//5. Iterate through the cells and set them all to dead.
-		
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				cells[i][j].isAlive = false;
+			}
+		}
 		repaint();
 	}
 	
@@ -80,7 +82,11 @@ Cell [][] cells;
 	@Override
 	public void paintComponent(Graphics g) {
 		//6. Iterate through the cells and draw them all
-		
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells.length; j++) {
+				cells[i][j].draw(g);
+			}
+		}
 		
 		
 		// draws grid
@@ -93,12 +99,25 @@ Cell [][] cells;
 		//7. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
-		
+		for (int i = 0; i < livingNeighbors.length; i++) {
+			for (int j = 0; j < livingNeighbors.length; j++) {
+				livingNeighbors[i][j] = getLivingNeighbors(i, j);
+			
 		//8. check if each cell should live or die
-	
-		
-		
-		
+				
+				if (livingNeighbors[i][j] == 2 ) {
+					cells[i][j].isAlive = true;
+				}
+				if (livingNeighbors[i][j] == 3) {
+					cells[i][j].isAlive = true;
+				}
+				if(cells[i][j].isAlive == false) {
+					if (livingNeighbors[i][j] >= 3) {
+						cells[i][j].isAlive = true;
+					};
+				}
+			}
+		}
 		repaint();
 	}
 	
@@ -107,7 +126,15 @@ Cell [][] cells;
 	//   living neighbors there are of the 
 	//   cell identified by x and y
 	public int getLivingNeighbors(int x, int y){
-		return 0;
+		int a = 0;
+		for (int i = x-1; i < x+1; i++) {
+			for (int j = y-1; j < y+1; j++) {
+				if (cells[i][j].isAlive == true) {
+					a++;
+				}
+			}
+		}	
+		return a;
 	}
 
 	@Override
