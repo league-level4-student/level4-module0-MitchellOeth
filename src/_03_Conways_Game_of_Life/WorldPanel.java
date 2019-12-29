@@ -27,10 +27,10 @@ Cell [][] cells;
 		this.cellsPerRow = cpr;
 	
 		//2. Calculate the cell size.
-		
+		cellSize = 10;
 		//3. Initialize the cell array to the appropriate size.
 		cells = new Cell[w][h];
-		//3. Iterate through the array and initialize each cell.
+		//4. Iterate through the array and initialize each cell.
 		//   Don't forget to consider the cell's dimensions when 
 		//   passing in the location.
 		for (int i = 0; i < w; i++) {
@@ -41,9 +41,8 @@ Cell [][] cells;
 	}
 	
 	public void randomizeCells() {
-		//4. Iterate through each cell and randomly set each
+		//5. Iterate through each cell and randomly set each
 		//   cell's isAlive memeber to true of false
-		
 		Random randy = new Random(2);
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells.length; j++) {
@@ -58,7 +57,7 @@ Cell [][] cells;
 	}
 	
 	public void clearCells() {
-		//5. Iterate through the cells and set them all to dead.
+		//6. Iterate through the cells and set them all to dead.
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells.length; j++) {
 				cells[i][j].isAlive = false;
@@ -81,7 +80,7 @@ Cell [][] cells;
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		//6. Iterate through the cells and draw them all
+		//7. Iterate through the cells and draw them all
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells.length; j++) {
 				cells[i][j].draw(g);
@@ -96,32 +95,25 @@ Cell [][] cells;
 	
 	//advances world one step
 	public void step() {
-		//7. iterate through cells and fill in the livingNeighbors array
+		//8. iterate through cells and fill in the livingNeighbors array
 		// . using the getLivingNeighbors method.
 		int[][] livingNeighbors = new int[cellsPerRow][cellsPerRow];
 		for (int i = 0; i < livingNeighbors.length; i++) {
 			for (int j = 0; j < livingNeighbors.length; j++) {
 				livingNeighbors[i][j] = getLivingNeighbors(i, j);
 			
-		//8. check if each cell should live or die
-				
-				if (livingNeighbors[i][j] == 2 ) {
-					cells[i][j].isAlive = true;
+		//9. check if each cell should live or die
+				boolean b = false;
+				if (cells[i][j].isAlive == true) {
+					b = true;
 				}
-				if (livingNeighbors[i][j] == 3) {
-					cells[i][j].isAlive = true;
-				}
-				if(cells[i][j].isAlive == false) {
-					if (livingNeighbors[i][j] >= 3) {
-						cells[i][j].isAlive = true;
-					};
-				}
+				cells[i][j].liveOrDie(livingNeighbors[i][j]);	
 			}
 		}
 		repaint();
 	}
 	
-	//9. Complete the method.
+	//10. Complete the method.
 	//   It returns an int of 8 or less based on how many
 	//   living neighbors there are of the 
 	//   cell identified by x and y

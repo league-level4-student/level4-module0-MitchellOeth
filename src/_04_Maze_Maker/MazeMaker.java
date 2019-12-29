@@ -22,8 +22,8 @@ public class MazeMaker{
 		maze = new Maze(width, height);
 		
 		//4. select a random cell to start
-		
-		
+		Random randy = new Random();
+		Cell[][] cellStart = cells[randy.nextInt(cells.length)][randy.nextInt(cells.length)];
 		//5. call selectNextPath method with the randomly selected cell
 		
 		
