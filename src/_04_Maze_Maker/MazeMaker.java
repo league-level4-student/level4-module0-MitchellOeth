@@ -41,10 +41,10 @@ public class MazeMaker{
 		if(c.size() > 0) {
 			
 			//C1. select one at random.
-			currentCell = c[randGen.nextInt(getUnvisitedNeighbors(currentCell).size())][randGen.nextInt(getUnvisitedNeighbors(currentCell).size())];
+			randGen.nextInt(c.size());
 			
 			//C2. push it to the stack
-//unvisitedNeighbors(randy.nextInt(unvisitedNeighbors.size())).push();
+
 			//C3. remove the wall between the two cells
 
 			//C4. make the new cell the current cell and mark it as visited
